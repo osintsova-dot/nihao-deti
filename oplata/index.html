@@ -75,12 +75,12 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
  var PLANS={module:{t:'Модуль 1',s:'1 990 ₽',d:'8 уроков · навсегда'},year:{t:'Год',s:'4 990 ₽',d:'все модули · 12 месяцев'}};
 
  function renderForm(fail){
-  var plan=PLANS[q.get('plan')]?q.get('plan'):'module';
+  var plan='module';
   app.innerHTML='<h1>Открыть все уроки</h1><p class="sub">Оплата картой или по СБП через Т-Банк. Код доступа появится на этом экране сразу после оплаты.</p>'
    +'<form class="card" id="f">'
    +'<div class="plans">'
    +'<label class="plan"><input type="radio" name="plan" value="module"'+(plan==='module'?' checked':'')+'><b>Модуль 1</b><span class="sum">1 990 ₽</span><small>8 уроков, 2 серии сериала, карточки, прописи. Доступ без срока.</small></label>'
-   +'<label class="plan"><input type="radio" name="plan" value="year"'+(plan==='year'?' checked':'')+'><b>Год</b><span class="sum">4 990 ₽</span><small>Модуль 1 сразу + все новые модули за 12 месяцев.</small></label>'
+   +'<div class="plan" style="cursor:default;opacity:.75"><b>Модуль 2</b><span class="sum" style="font-size:18px;color:var(--mute)">в работе</span><small>Купившим модуль 1 — скидка, когда выйдет.</small></div>'
    +'</div>'
    +'<div class="field"><label for="email">Электронная почта <span>· сюда придёт чек</span></label><input id="email" type="email" inputmode="email" autocomplete="email" required placeholder="mama@example.ru"></div>'
    +'<div class="field"><label for="child">Имя ребёнка <span>· необязательно</span></label><input id="child" autocomplete="off" placeholder="Маша"></div>'
@@ -125,7 +125,7 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
   ls.set('zhCode',code);
   app.innerHTML='<div class="card done"><div class="big" lang="zh">太棒了!</div><h1>Готово! Уроки открыты</h1>'
    +'<p>Код вашей семьи. Сохраните его: по нему входят с других устройств.</p><div class="code">'+esc(code)+'</div>'
-   +'<p>'+(plan==='year'?'Годовой доступ: все модули на 12 месяцев.':'Модуль 1: 8 уроков без срока.')+' Чек придёт на почту.</p>'
+   +'<p>Модуль 1: 8 уроков без срока. Чек придёт на почту.</p>'
    +'<a class="btn" href="/uroki/?k='+encodeURIComponent(code)+'">Открыть уроки</a>'
    +'<p class="hint">На другом устройстве: откройте nihao-deti.ru/uroki/ и введите код. Потерялся код — напишите нам «НИХАО», восстановим по почте.</p></div>';
  }
