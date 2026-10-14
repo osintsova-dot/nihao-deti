@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Нихао, дети! — китайский для детей с нуля, сам с телефона</title>
+<meta name="description" content="Онлайн-курс китайского для детей 8–13 лет без учителя: слова с озвучкой, игры, песни-мультики, сериал с героями и иероглифы пальцем. Первый урок бесплатно.">
+<link rel="canonical" href="https://nihao-deti.ru/">
+<meta property="og:title" content="Нихао, дети! — китайский для детей с нуля">
+<meta property="og:description" content="Ребёнок заговорит по-китайски сам, с телефона, за 10 минут в день. Первый урок бесплатно.">
+<meta property="og:image" content="https://nihao-deti.ru/img/story_hero.webp">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<meta name="theme-color" content="#6C3FC5">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Onest:wght@400;500;700;800&family=Noto+Sans+SC:wght@900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Playfair";src:url(/playfair-cyr.woff2) format("woff2");font-weight:400 700;font-display:swap}
+:root{--paper:#F6F1E6;--paper2:#EDE6D6;--ink:#1F1B17;--ink2:#4A423B;--mute:#7A6F63;--p:#6C3FC5;--p2:#8B5CF6;--honey:#F5C842;--honey2:#E0B32E;--red:#D8432B;
+ --f:"Onest",system-ui,sans-serif;--d:"Unbounded",var(--f);--s:"Playfair",Georgia,serif;--zh:"Noto Sans SC","PingFang SC",sans-serif;--ease:cubic-bezier(.2,.9,.25,1.1)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--paper)}
+body{margin:0;font-family:var(--f);color:var(--ink);background:var(--paper);line-height:1.5;overflow-x:hidden;position:relative}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+ background:radial-gradient(60% 40% at 8% 6%,rgba(245,200,66,.35),transparent 60%),radial-gradient(50% 35% at 96% 20%,rgba(108,63,197,.16),transparent 60%),radial-gradient(45% 30% at 10% 90%,rgba(108,63,197,.14),transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 20px}
+::selection{background:var(--honey);color:var(--ink)}
+:focus-visible{outline:3px solid var(--p);outline-offset:3px;border-radius:8px}
+img,video{max-width:100%}
+/* шапка */
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 0 6px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--d);font-weight:900;font-size:20px;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.logo .zh{font-family:var(--zh);font-weight:900;color:#fff;background:var(--red);width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px;line-height:1;transform:rotate(-6deg);box-shadow:0 6px 14px rgba(216,67,43,.35)}
+.logo b{color:var(--p)}
+nav{display:flex;gap:4px;align-items:center}
+nav a{font-weight:700;font-size:14px;color:var(--ink2);text-decoration:none;padding:8px 12px;border-radius:999px}
+nav a:hover{background:#fff}
+nav a.cta{background:var(--honey);color:var(--ink);box-shadow:0 2px 0 var(--honey2)}
+/* кисть */
+.brush{position:relative;display:inline-block;white-space:nowrap}
+.brush::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.06em;height:.32em;z-index:-1;border-radius:40% 60% 50% 45%/60% 40% 60% 40%;
+ background:linear-gradient(90deg,var(--honey) 0%,var(--honey) 55%,var(--p2) 100%);opacity:.85;transform:rotate(-1.2deg)}
+/* герой */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:30px 0 20px}
+.eyebrow{font-family:var(--s);font-style:italic;font-size:18px;color:var(--ink2);margin:0 0 12px}
+h1{font-family:var(--d);font-weight:900;font-size:clamp(34px,5.6vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px;color:var(--ink)}
+h1 .zh{font-family:var(--zh);color:var(--p);display:block;font-size:.5em;letter-spacing:.08em;margin-top:10px;font-weight:900}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--ink2);margin:0 0 20px;max-width:36ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0;list-style:none}
+.facts li{font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid rgba(31,27,23,.1);box-shadow:0 2px 0 rgba(31,27,23,.06)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:999px;font-weight:800;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;color:var(--ink);
+ transition:transform .15s var(--ease),box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.btn.honey{background:var(--honey);box-shadow:0 10px 24px rgba(224,179,46,.35),0 2px 0 var(--honey2)}
+.btn.ink{background:var(--ink);color:#fff;box-shadow:0 10px 24px rgba(31,27,23,.25)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+.free-note{font-size:14px;color:var(--mute);margin-top:10px}
+.hero-art{position:relative;justify-self:center;width:min(100%,330px)}
+.phone{width:100%;aspect-ratio:9/19.3;border-radius:34px;background:var(--ink);padding:9px;box-shadow:0 36px 70px rgba(31,27,23,.32),0 0 0 2px rgba(255,255,255,.4);position:relative;transform:rotate(-2deg)}
+.phone .scr{width:100%;height:100%;border-radius:26px;overflow:hidden;background:#fff;position:relative}
+.phone .scr video,.phone .scr img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.phone .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:34%;height:16px;border-radius:0 0 12px 12px;background:var(--ink)}
+.stamp{position:absolute;right:-16px;top:28px;width:104px;height:104px;border-radius:50%;background:var(--honey);display:grid;place-items:center;text-align:center;
+ font-family:var(--d);font-weight:900;font-size:13px;line-height:1.1;color:var(--ink);box-shadow:0 12px 24px rgba(0,0,0,.2);transform:rotate(8deg);animation:wig 6s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-4deg) translateY(-4px)}}
+.bubble{position:absolute;left:-28px;bottom:70px;background:#fff;border-radius:18px 18px 18px 4px;padding:10px 14px;font-family:var(--zh);font-weight:900;font-size:22px;color:var(--p);box-shadow:0 14px 30px rgba(31,27,23,.18);animation:fadeup .6s var(--ease) 1.2s backwards}
+.bubble small{display:block;font-family:var(--f);font-weight:700;font-size:12px;color:var(--mute)}
+@keyframes fadeup{from{transform:translateY(16px);opacity:0}}
+/* секции */
+section{padding:44px 0}
+h2{font-family:var(--d);font-weight:900;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em;line-height:1.08;margin:0 0 10px}
+.sub{font-family:var(--s);font-style:italic;font-size:19px;color:var(--ink2);margin:0 0 24px;max-width:60ch}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tiles.four{grid-template-columns:repeat(4,1fr)}
+.tile{background:#fff;border-radius:22px;padding:22px 20px;box-shadow:0 14px 30px rgba(31,27,23,.10);border:1px solid rgba(31,27,23,.06)}
+.tile .ic{width:46px;height:46px;border-radius:14px;background:var(--paper2);display:grid;place-items:center;margin-bottom:12px;font-family:var(--zh);font-weight:900;color:var(--p);font-size:22px}
+.tile .ic svg{width:24px;height:24px;fill:none;stroke:var(--p);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.tile h3{margin:0 0 6px;font-size:18px;font-weight:800}
+.tile p{margin:0;color:var(--ink2);font-size:15px}
+.tile .num{font-family:var(--d);font-weight:900;font-size:12px;color:var(--mute);letter-spacing:.1em;margin-bottom:8px}
+/* появление при скролле */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.tiles .rv:nth-child(2){transition-delay:.08s}.tiles .rv:nth-child(3){transition-delay:.16s}.tiles .rv:nth-child(4){transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{animation:none!important}}
+/* демо-экраны */
+.demo{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:460px;margin:0 auto;width:100%}
+.shots img{width:100%;height:auto;display:block;border-radius:22px;box-shadow:0 20px 40px rgba(31,27,23,.2);border:5px solid #fff}
+.shots img:nth-child(2){transform:translateY(26px) rotate(2deg)}
+.shots img:nth-child(1){transform:rotate(-2deg)}
+.checks{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:12px}
+.checks li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;font-size:16px}
+.checks li b{display:block;font-weight:800}
+.checks li span{color:var(--ink2);font-size:15px}
+.checks svg{width:30px;height:30px;fill:none;stroke:var(--p);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;background:#fff;border-radius:50%;padding:6px;box-shadow:0 2px 0 rgba(31,27,23,.08)}
+/* программа */
+.program{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.les{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 10px 24px rgba(31,27,23,.08);border:1px solid rgba(31,27,23,.06);text-decoration:none;color:inherit}
+.les .n{width:48px;height:48px;border-radius:14px;background:var(--honey);display:grid;place-items:center;font-family:var(--d);font-weight:900;font-size:16px}
+.les.film .n{background:var(--ink);color:#fff;font-size:20px}
+.les .zh{display:block;font-family:var(--zh);font-weight:900;font-size:20px;line-height:1.1}
+.les .zh small{font-family:var(--f);font-weight:800;color:var(--p);font-size:14px;margin-left:8px}
+.les .ru{display:block;font-size:14px;color:var(--ink2)}
+.les .tag{display:inline-block;margin-left:8px;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:#E6F9F5;color:#117A66;vertical-align:middle}
+.result{margin-top:22px;background:linear-gradient(135deg,#2A1F4E,#3E2A7A);color:#fff;border-radius:26px;padding:26px 28px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.result .big{font-family:var(--zh);font-weight:900;font-size:64px;line-height:1;color:var(--honey)}
+.result h3{margin:0 0 8px;font-family:var(--d);font-size:20px}
+.result ul{margin:0;padding-left:18px;opacity:.95;columns:2;column-gap:28px;font-size:15px}
+.result li{break-inside:avoid;margin-bottom:4px}
+/* сериал */
+.film{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center;background:#fff;border-radius:30px;padding:26px;box-shadow:0 14px 30px rgba(31,27,23,.10)}
+.film img{width:100%;height:auto;display:block;border-radius:22px;aspect-ratio:16/10;object-fit:cover}
+.film .q{font-family:var(--s);font-style:italic;font-size:clamp(19px,2.4vw,23px);line-height:1.35;margin:0 0 14px}
+.film p{margin:0 0 10px;color:var(--ink2)}
+/* цена */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.plan{background:#fff;border-radius:28px;padding:26px;box-shadow:0 14px 30px rgba(31,27,23,.10);border:2px solid transparent;display:flex;flex-direction:column;position:relative}
+.plan.best{border-color:var(--p);background:linear-gradient(180deg,#fff,#F7F3FF)}
+.plan .badge{position:absolute;top:-14px;left:24px;background:var(--p);color:#fff;font-weight:800;font-size:12px;padding:6px 12px;border-radius:999px;letter-spacing:.04em}
+.plan h3{font-family:var(--d);font-size:20px;margin:0 0 4px}
+.plan .for{color:var(--mute);font-size:14px;margin:0 0 14px}
+.plan .sum{display:flex;align-items:baseline;gap:8px;margin:0 0 14px}
+.plan .sum b{font-family:var(--d);font-weight:900;font-size:40px;letter-spacing:-.02em}
+.plan .sum span{font-weight:700;color:var(--mute)}
+.plan ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:8px;font-size:15px;color:var(--ink2)}
+.plan li{display:grid;grid-template-columns:20px 1fr;gap:8px}
+.plan li::before{content:"✓";font-weight:900;color:var(--p)}
+.plan li.soon{color:var(--mute)}.plan li.soon::before{content:"◌";color:var(--mute)}
+.plan .btn{margin-top:auto;justify-content:center}
+.pay-note{margin-top:14px;color:var(--mute);font-size:14px;text-align:center}
+/* форма */
+.form{background:#fff;border-radius:30px;padding:28px;box-shadow:0 14px 30px rgba(31,27,23,.10);display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin-top:22px}
+.form h3{margin:0 0 6px;font-family:var(--d);font-size:20px}
+.form p{margin:0 0 16px;color:var(--ink2)}
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field label{font-weight:700;font-size:14px}
+.field input,.field select{font:inherit;font-size:16px;padding:13px 14px;border-radius:14px;border:2px solid rgba(31,27,23,.14);background:var(--paper);color:var(--ink);width:100%}
+.field input:focus,.field select:focus{border-color:var(--p);outline:none}
+.msg{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-weight:700}
+.msg.ok{display:block;background:#E6F9F5;color:#117A66}.msg.err{display:block;background:#FDE8E8;color:#9B2C2C}
+.alt h3{margin:0 0 8px}
+.code{font-family:var(--d);font-weight:900;font-size:24px;padding:6px 14px;border-radius:12px;background:var(--honey);display:inline-block;transform:rotate(-2deg);margin:4px 0 12px}
+.links{display:grid;gap:10px}
+.links a{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;border:1px solid rgba(31,27,23,.08)}
+.links a:hover{background:var(--paper2)}
+/* вопросы */
+.faq{display:grid;gap:10px;max-width:760px}
+details{background:#fff;border-radius:18px;padding:4px 20px;box-shadow:0 8px 20px rgba(31,27,23,.07);border:1px solid rgba(31,27,23,.06)}
+summary{cursor:pointer;font-weight:800;font-size:16px;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--d);font-weight:900;color:var(--p);font-size:20px;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 16px;color:var(--ink2);font-size:15px}
+footer{padding:36px 0 56px;color:var(--mute);font-size:14px;text-align:center;line-height:1.7}
+footer a{color:var(--p)}
+@media(max-width:860px){
+ nav a:not(.cta){display:none}
+ .hero{grid-template-columns:1fr;gap:26px}.hero-art{width:min(100%,280px)}.stamp{right:-10px}
+ .tiles,.tiles.four{grid-template-columns:1fr 1fr}
+ .demo,.film,.form,.plans,.program{grid-template-columns:1fr}
+ .result{grid-template-columns:1fr}.result ul{columns:1}
+ section{padding:32px 0}
+}
+@media(max-width:520px){.tiles,.tiles.four{grid-template-columns:1fr}.bubble{left:-8px}}
+</style></head>
+<body>
+<div class="wrap">
+ <header class="top">
+  <a class="logo" href="/"><span class="zh">你好</span>Нихао, <b>дети!</b></a>
+  <nav>
+   <a href="#how">Как устроено</a><a href="#program">Программа</a><a href="#price">Цена</a><a href="#faq">Вопросы</a>
+   <a class="cta" href="/uroki/how-are-you/">Урок бесплатно</a>
+  </nav>
+ </header>
+
+ <section class="hero">
+  <div>
+   <p class="eyebrow">Китайский с нуля для детей 8–13 лет · без учителя, с телефона</p>
+   <h1>Ребёнок заговорит по-китайски <span class="brush">сам.</span> Десять минут в день.
+    <span class="zh">你好！我叫…</span></h1>
+   <p class="lead">Слова с озвучкой, игра на слух, песня-мультик и один иероглиф, который можно обвести пальцем. Каждый урок как любимая игра, а не как урок.</p>
+   <ul class="facts"><li>8 уроков в модуле</li><li>6 песен-мультиков</li><li>сериал с героями</li><li>50+ иероглифов</li><li>без родителей</li></ul>
+   <div class="cta">
+    <a class="btn honey" href="/uroki/how-are-you/"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Открыть первый урок бесплатно</a>
+    <a class="btn ghost" href="#price">Открыть все уроки</a>
+   </div>
+   <p class="free-note">Без регистрации и карты. Дайте ребёнку телефон на десять минут и посмотрите, что будет.</p>
+  </div>
+  <div class="hero-art">
+   <div class="phone"><div class="scr"><video src="/img/demo_loop.mp4" poster="/img/demo_poster.jpg" autoplay muted loop playsinline></video></div><div class="notch"></div></div>
+   <div class="stamp">урок 1<br>бесплатно</div>
+   <div class="bubble">你好吗？<small>Nǐ hǎo ma? · Как дела?</small></div>
+  </div>
+ </section>
+
+ <section id="how">
+  <h2 class="rv">Как проходит урок</h2>
+  <p class="sub rv">Четыре шага по десять минут. Ребёнок проходит их сам, в своём темпе, хоть на диване.</p>
+  <div class="tiles four">
+   <div class="tile rv"><div class="num">ШАГ 1</div><div class="ic">说</div><h3>Слова с озвучкой</h3><p>Нажал на карточку, услышал, повторил. Иероглиф, пиньинь, перевод. Голос чистый, тоны верные.</p></div>
+   <div class="tile rv"><div class="num">ШАГ 2</div><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h3l3 7 4-14 3 7h5"/></svg></div><h3>Игра на слух</h3><p>Слышит фразу и ищет картинку. Считает, сколько угадал. Хочет побить свой рекорд.</p></div>
+   <div class="tile rv"><div class="num">ШАГ 3</div><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div><h3>Песня-мультик</h3><p>Герой поёт и танцует, слова загораются по слогам. Через два дня ребёнок поёт её в ванной.</p></div>
+   <div class="tile rv"><div class="num">ШАГ 4</div><div class="ic">好</div><h3>Иероглиф дня</h3><p>Из чего состоит, как пишется, обводка пальцем прямо на экране. По одному в день, без зубрёжки.</p></div>
+  </div>
+ </section>
+
+ <section>
+  <div class="demo">
+   <div class="shots rv"><img src="/img/shot_words.webp" alt="Экран урока: карточки слов с озвучкой" loading="lazy"><img src="/img/shot_hanzi.webp" alt="Экран урока: иероглиф дня, обводка пальцем" loading="lazy"></div>
+   <div>
+    <h2 class="rv">Сначала разговор, а не сотня иероглифов</h2>
+    <p class="sub rv">Так учат язык те, кому он нужен, чтобы говорить.</p>
+    <ul class="checks rv">
+     <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg><div><b>Говорит с первого урока</b><span>Здоровается, знакомится, спрашивает «как дела?». Тоны ставим в игре, а не по таблице.</span></div></li>
+     <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg><div><b>Повторяет как в Quizlet</b><span>Карточки «знаю / не знаю» по всем урокам. Трудные слова возвращаются сами, пока не запомнятся.</span></div></li>
+     <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg><div><b>Слышит живую речь</b><span>Сериал с героями-ровесниками в Пекине. Сначала смотрит без субтитров, потом повторяет, потом озвучивает героя сам.</span></div></li>
+     <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L19 7"/></svg><div><b>Родителям ничего делать не нужно</b><span>Ни проверять, ни сидеть рядом. Курс сам ведёт ребёнка от урока к уроку.</span></div></li>
+    </ul>
+   </div>
+  </div>
+ </section>
+
+ <section id="program">
+  <h2 class="rv">Модуль 1 · восемь уроков</h2>
+  <p class="sub rv">Каждые два урока — серия сериала, где герои говорят только теми словами, которые ребёнок уже знает.</p>
+  <div class="program">
+   <a class="les rv" href="/uroki/how-are-you/"><span class="n">1</span><span><span class="zh">你好吗？<small>Nǐ hǎo ma?</small></span><span class="ru">Как дела? · 12 фраз-эмоций, игра, песня, иероглиф дня <span class="tag">бесплатно</span></span></span></a>
+   <div class="les rv"><span class="n">2</span><span><span class="zh">你叫什么名字？<small>Nǐ jiào shénme míngzi?</small></span><span class="ru">Как тебя зовут? · он / она · друг и учитель · песня</span></span></div>
+   <div class="les film rv"><span class="n">▶</span><span><span class="zh">新朋友<small>Xīn péngyou</small></span><span class="ru">Серия «Новый друг» · четыре тона · мемори иероглиф + пиньинь</span></span></div>
+   <div class="les rv"><span class="n">4</span><span><span class="zh">我们的对话<small>Wǒmen de duìhuà</small></span><span class="ru">Наш диалог · собери фразу · сцена по ролям · диалог о себе</span></span></div>
+   <div class="les rv"><span class="n">5</span><span><span class="zh">一二三！<small>Yī, èr, sān!</small></span><span class="ru">Считаем до 20 · «сколько тебе лет?» · счёт на пальцах по-китайски · песня-считалка</span></span></div>
+   <div class="les rv"><span class="n">6</span><span><span class="zh">今天天气怎么样？<small>Tiānqì zěnmeyàng?</small></span><span class="ru">Какая погода? · солнце, дождь, снег, ветер · песня-регги с мультиком</span></span></div>
+   <div class="les film rv"><span class="n">▶</span><span><span class="zh">生日快乐！<small>Shēngrì kuàilè!</small></span><span class="ru">Серия «С днём рождения!» · тоны в числах и погоде · мемори</span></span></div>
+   <div class="les rv"><span class="n">8</span><span><span class="zh">我们的天气<small>Wǒmen de tiānqì</small></span><span class="ru">Наша погода · сцена по ролям · свой проект о погоде и возрасте</span></span></div>
+  </div>
+  <div class="result rv">
+   <div class="big">会</div>
+   <div><h3>Что ребёнок умеет после модуля 1</h3>
+    <ul><li>здоровается и прощается</li><li>знакомится и представляет друга</li><li>говорит, как у него дела</li><li>считает до 20 и называет возраст</li><li>рассказывает о погоде</li><li>поёт шесть песен по-китайски</li><li>узнаёт 50+ иероглифов</li><li>понимает две серии сериала на слух</li></ul>
+   </div>
+  </div>
+ </section>
+
+ <section>
+  <div class="film rv">
+   <img src="/uroki/film/ep1/poster.jpg" alt="Кадр из сериала: Мэймэй и Сяо Лун в Пекине" loading="lazy">
+   <div>
+    <h2>Сериал «Гинкго в Пекине»</h2>
+    <p class="q">«Как в настоящих учебниках: живые дети, живая речь. Только слова все знакомые, и поэтому ребёнок понимает».</p>
+    <p>Мэймэй переезжает в Пекин и знакомится с Сяо Луном. Каждая серия — повторение двух уроков. Режимы: смотрю · повторяю за героем · озвучиваю героя сам. Субтитры: иероглифы, пиньинь или перевод, по желанию.</p>
+   </div>
+  </div>
+ </section>
+
+ <section id="price">
+  <h2 class="rv">Сколько стоит</h2>
+  <p class="sub rv">Один доступ на всю семью: до трёх устройств, телефон, планшет и компьютер.</p>
+  <div class="plans">
+   <div class="plan rv">
+    <h3>Модуль 1</h3><p class="for">восемь уроков, навсегда</p>
+    <div class="sum"><b>1 990 ₽</b><span>разово</span></div>
+    <ul><li>8 уроков со словами, играми и песнями</li><li>2 серии сериала</li><li>карточки «знаю / не знаю»</li><li>прописи и карточки для печати</li><li>доступ без срока</li></ul>
+    <a class="btn ink" href="#buy" data-plan="Модуль 1 · 1990">Хочу модуль 1</a>
+   </div>
+   <div class="plan best rv">
+    <span class="badge">выгоднее</span>
+    <h3>Год</h3><p class="for">все модули, которые выйдут за год</p>
+    <div class="sum"><b>4 990 ₽</b><span>на 12 месяцев</span></div>
+    <ul><li>модуль 1 сразу</li><li>новые модули по мере выхода</li><li>все серии сериала</li><li>карточки, прописи, печатные материалы</li><li class="soon">проверка произношения ИИ — скоро</li></ul>
+    <a class="btn honey" href="#buy" data-plan="Год · 4990">Хочу год</a>
+   </div>
+  </div>
+  <p class="pay-note">Оплата картой или по СБП, чек приходит на почту. Доступ открывается кодом семьи.</p>
+
+  <div class="form" id="buy">
+   <div>
+    <h3>Получить доступ</h3>
+    <p>Оставьте контакт, и мы пришлём ссылку на оплату и код семьи. Обычно в течение часа, в рабочее время.</p>
+    <form id="leadform" novalidate>
+     <div class="field"><label for="f-name">Как вас зовут</label><input id="f-name" name="name" autocomplete="name" required></div>
+     <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></div>
+     <div class="field"><label for="f-plan">Что оформляем</label><select id="f-plan"><option>Модуль 1 · 1 990 ₽</option><option>Год · 4 990 ₽</option><option>Пока вопрос</option></select></div>
+     <button class="btn honey" id="f-btn" type="submit">Отправить</button>
+     <div class="msg" id="f-msg"></div>
+    </form>
+   </div>
+   <div class="alt">
+    <h3>Или напишите нам</h3>
+    <p>Одно слово в сообщения, и мы всё расскажем и пришлём ссылку на оплату.</p>
+    <div class="code">НИХАО</div>
+    <div class="links">
+     <a href="https://t.me/SPeakSmilebot" target="_blank" rel="noopener">Telegram</a>
+     <a href="https://max.ru/id245718463277_bot" target="_blank" rel="noopener">MAX</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <section id="faq">
+  <h2 class="rv">Вопросы</h2>
+  <div class="faq rv">
+   <details><summary>С какого возраста?</summary><p>Спокойно с 8 лет: ребёнок уже читает по-русски и может сам открыть урок. Старшим, 12–13, тоже подходит: подача не «малышовая», герои сериала — их ровесники.</p></details>
+   <details><summary>Нужен ли учитель или знание китайского у родителей?</summary><p>Нет. Все слова озвучены, тоны проверены преподавателем-китаистом, задания проверяются сами. Родителю достаточно дать телефон.</p></details>
+   <details><summary>Сколько времени занимает?</summary><p>Один урок — четыре шага по 8–10 минут. Удобно проходить по шагу в день, а к сериалу и песням возвращаться, сколько захочется.</p></details>
+   <details><summary>На каких устройствах работает?</summary><p>Телефон, планшет, компьютер. Код семьи работает на трёх устройствах. Ничего устанавливать не нужно, но на телефоне курс можно добавить на экран «Домой» как приложение.</p></details>
+   <details><summary>Что будет после модуля 1?</summary><p>Модуль 2 с новыми темами: семья, еда, школа, «что ты любишь». Годовой доступ включает все модули, которые выйдут за 12 месяцев.</p></details>
+   <details><summary>А если ребёнку не зайдёт?</summary><p>Для этого первый урок открыт бесплатно и целиком: слова, игра, песня, иероглиф. Если ребёнок прошёл его и просит ещё, модуль точно зайдёт.</p></details>
+  </div>
+ </section>
+
+ <footer>
+  «Нихао, дети!» — онлайн-курс китайского для детей от школы Speak&amp;Smile · ИП Синцова О. В.<br>
+  <a href="https://speakandsmile.ru/privacy.html">Политика обработки персональных данных</a> · <a href="/uroki/">Вход для учеников</a>
+ </footer>
+</div>
+<script>
+(function(){
+ // мягкое появление блоков при скролле
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+ document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+ // кнопки тарифов подставляют план в форму
+ document.querySelectorAll('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var s=document.getElementById('f-plan');s.selectedIndex=a.dataset.plan.indexOf('Год')===0?1:0;});});
+ var form=document.getElementById('leadform'), btn=document.getElementById('f-btn'), msg=document.getElementById('f-msg');
+ function show(t,ok){ msg.className='msg '+(ok?'ok':'err'); msg.textContent=t; }
+ form.addEventListener('submit',function(e){ e.preventDefault();
+  var name=document.getElementById('f-name').value.trim(), phone=document.getElementById('f-phone').value.trim(), plan=document.getElementById('f-plan').value;
+  if(!name||!phone){ show('Заполните, пожалуйста, имя и телефон',false); return; }
+  btn.disabled=true; btn.textContent='Отправляем…';
+  fetch('https://ss-lead.o-sintsova.workers.dev/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,age:'НИХАО-ДЕТИ · '+plan})})
+  .then(function(r){return r.json();}).catch(function(){return {ok:false};})
+  .then(function(res){ if(res&&res.ok){ show('Заявка отправлена. Пришлём ссылку на оплату и код семьи.',true); btn.textContent='Отправлено ✓'; }
+   else { show('Не отправилось. Напишите нам «НИХАО» в Telegram или MAX.',false); btn.disabled=false; btn.textContent='Отправить'; } });
+ });
+ var v=document.querySelector('.phone video'); if(v){ v.play().catch(function(){}); }
+})();
+</script>
+</body></html>

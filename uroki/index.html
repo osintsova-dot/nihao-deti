@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="apple-touch-icon" href="/uroki/icons/apple-touch-icon.png?v=2"><link rel="icon" type="image/png" sizes="192x192" href="/uroki/icons/icon-192.png?v=2"><link rel="manifest" href="/uroki/manifest.webmanifest"><meta name="apple-mobile-web-app-title" content="Китайский"><meta name="theme-color" content="#6C3FC5">
+<title>Китайский для детей · Speak&Smile</title>
+<meta name="description" content="Уроки китайского для детей Speak&Smile: повторяй дома то, что прошли с учителем — слова с озвучкой, игры, песни, иероглифы.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&family=Noto+Sans+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6C3FC5;--honey:#F5C842;--pink:#F17FBE;--teal:#34D3C0;--ink:#2A2140;--muted:#6A5B9A;--f:"Baloo 2",ui-rounded,system-ui,sans-serif;--zh:"Noto Sans SC","PingFang SC",sans-serif;--ease:cubic-bezier(.2,.9,.25,1.1)}
+*{box-sizing:border-box}html{background:#5B3FCF}
+body{margin:0;font-family:var(--f);color:#fff;min-height:100vh;padding:28px 18px 60px;text-align:center;
+  background:radial-gradient(120% 90% at 15% 0%,rgba(241,127,190,.35),transparent 55%),radial-gradient(120% 90% at 100% 10%,rgba(99,179,255,.4),transparent 55%),linear-gradient(180deg,#7C4DE0,#5B3FCF 55%,#4A2FB0)}
+.wrap{max-width:640px;margin:0 auto}
+.brand{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);font-weight:700;font-size:13px}
+.brand b{color:var(--honey)}
+h1{font-family:var(--zh);font-weight:900;font-size:clamp(44px,12vw,72px);line-height:1.05;margin:10px 0 0;text-shadow:0 4px 0 rgba(74,32,150,.28),0 14px 30px rgba(0,0,0,.28)}
+.lead{font-weight:600;font-size:16px;opacity:.92;margin:8px 0 26px}
+.list{display:grid;gap:14px;text-align:left}
+.card{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:#fff;color:var(--ink);border-radius:22px;padding:14px 16px;text-decoration:none;
+  box-shadow:0 12px 26px rgba(30,10,70,.28);transition:transform .18s var(--ease),box-shadow .18s;animation:rise .5s var(--ease) backwards;animation-delay:calc(var(--i)*60ms)}
+@keyframes rise{from{transform:translateY(14px);opacity:0}}
+a.card:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(30,10,70,.34)}
+.n{width:44px;height:44px;border-radius:14px;background:var(--honey);display:grid;place-items:center;font-weight:800;font-size:18px;color:var(--ink)}
+.card .zh{font-family:var(--zh);font-weight:900;font-size:24px;line-height:1.1}
+.card .py{font-weight:800;color:var(--p);font-size:15px}
+.card .ru{font-weight:600;color:var(--muted);font-size:13px}
+.st{font-weight:800;font-size:12px;padding:6px 10px;border-radius:999px;background:#E6F9F5;color:#117A66;white-space:nowrap}
+.card.locked{background:rgba(255,255,255,.72);color:var(--muted);box-shadow:none;cursor:default}
+.card.locked .n{background:#E6DEFB;color:var(--muted)}.card.locked .zh{color:var(--muted)}.card.locked .py{color:var(--muted)}
+.card.locked .st{background:#F3EEFF;color:var(--muted)}
+.card.teacher .st{background:#FFF3C4;color:#7A5A00}
+.join{display:inline-block;margin-top:26px;padding:14px 22px;border-radius:999px;background:var(--honey);color:var(--ink);font-weight:800;text-decoration:none;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.foot{margin-top:30px;font-size:13px;opacity:.85;font-weight:600}.foot a{color:var(--honey)}
+@media(max-width:480px){.card{grid-template-columns:auto 1fr}.card .st{grid-column:2;justify-self:start}}
+.codecta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;margin:-8px 0 18px;padding:12px 16px;border-radius:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);font-weight:700;font-size:15px}
+.codecta[hidden],.join[hidden]{display:none}
+.codecta button{border:0;border-radius:999px;padding:9px 16px;background:#fff;color:var(--p);font:800 15px/1 var(--f);cursor:pointer;transition:transform .15s var(--ease)}
+.codecta button:active{transform:scale(.96)}
+a.card.code{cursor:pointer}a.card.code:hover{transform:translateY(-2px);background:rgba(255,255,255,.85)}
+.tbadge{position:fixed;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:var(--honey);color:var(--ink);font-weight:700;font-size:12px;box-shadow:0 6px 16px rgba(0,0,0,.2)}
+
+.songs{display:flex;align-items:center;gap:14px;margin:-8px 0 18px;padding:14px 16px;border-radius:22px;text-decoration:none;color:var(--ink);text-align:left;
+  background:linear-gradient(135deg,#FFF6D6,#fff);box-shadow:0 12px 26px rgba(30,10,70,.28);transition:transform .18s var(--ease)}
+.songs:hover{transform:translateY(-3px)}
+.songs+.codecta{margin-top:0}
+.lhead{margin:4px 2px 10px;text-align:left;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.songs .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--p);color:#fff;flex:none}
+.songs .ic svg{width:24px;height:24px;fill:currentColor}
+.songs b{display:block;font-weight:800;font-size:17px;line-height:1.15}.songs span{font-weight:600;color:var(--muted);font-size:13px}
+/* пиньинь — Nunito: у Baloo 2 знак тона над ā съезжает вбок */
+.py,.stage .sub .s,.fstage .ksy{font-family:"Nunito","Baloo 2",system-ui,sans-serif}
+</style></head>
+<body><div class="wrap">
+  <div class="brand">Speak<b>&</b>Smile · китайский для детей</div>
+  <h1>中文</h1>
+  <p class="lead">Здесь то, что мы уже прошли на занятии. Повторяй дома: слушай, играй, пой.</p>
+  <a class="songs" href="songs/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v10.6A4 4 0 1 0 14 17V7h4V3z"/></svg></span><span><b>Наши песни <span lang="zh" style="font-family:var(--zh);font-weight:900;color:var(--p);font-size:15px">我们的歌</span></b><span>Все песни по порядку — слушай подряд, как плейлист</span></span></a>
+  <a class="songs" href="cards/" style="margin-top:0"><span class="ic" style="font-family:var(--zh);font-weight:900;font-size:22px">知</span><span><b>Карточки «знаю / не знаю» <span lang="zh" style="font-family:var(--zh);font-weight:900;color:var(--p);font-size:15px">知道</span></b><span>Слова всех пройденных уроков. Трудные повторяются чаще</span></span></a>
+  <div class="codecta" id="codecta" hidden><span>Первый урок открыт всем. Остальные — для учеников группы.</span><button id="codebtn">Ввести код семьи</button></div>
+  <div class="lhead">Уроки</div>
+  <div class="list" id="list"><p style="opacity:.8">Загружаю уроки…</p></div>
+  <a class="join" id="join" href="/#price">Открыть все уроки</a>
+  <p class="foot"><a href="/">Нихао, дети!</a> · Speak&Smile<span id="tl"> · <a href="#" id="tlogin">Вход для учителя</a></span></p>
+</div>
+<script src="gate.js?v=4"></script>
+<script>
+function draw(g){
+  const list=document.getElementById('list'); list.innerHTML='';
+  const cta=document.getElementById('codecta'); cta.hidden=g.member||g.teacher; document.getElementById('join').hidden=g.member&&!g.teacher;
+  g.cfg.lessons.forEach((l,i)=>{
+    const open=g.isOpen(l.id), needCode=g.needCode(l.id);
+    const el=document.createElement(open||needCode?'a':'div'); el.className='card'+(open?'':' locked')+(needCode?' code':'')+((g.teacher&&!l.isOpen)?' teacher':''); el.style.setProperty('--i',i);
+    if(open) el.href=l.id+'/';
+    if(needCode){ el.href='#'; el.onclick=e=>{ e.preventDefault(); g.askCode().then(draw); }; }
+    const st = needCode ? '🔒 Ученикам группы'
+      : (l.free && !g.member && !g.teacher) ? 'Пробный · открыт всем'
+      : l.isOpen ? 'Пройдено · повторяй' : (g.teacher ? 'Откроется '+g.fmt(l.openDate) : 'После занятия '+g.fmt(l.openDate));
+    el.innerHTML=`<div class="n">${i+1}</div><div><div class="zh" lang="zh">${l.zh}</div><div class="py">${l.py} · ${l.ru}</div><div class="ru">${l.what}</div></div><span class="st">${st}</span>`;
+    list.appendChild(el);
+  });
+  if(g.teacher && !document.querySelector('.tbadge')){ const b=document.createElement('div'); b.className='tbadge'; b.textContent='Режим учителя'; document.body.appendChild(b); }
+}
+ZhGate.ready.then(g=>{ draw(g); document.getElementById('codebtn').onclick=()=>g.askCode().then(draw); document.getElementById('tl').hidden=g.teacher; document.getElementById('tlogin').onclick=e=>{ e.preventDefault(); g.askCode().then(draw); }; }).catch(()=>{ document.getElementById('list').innerHTML='<p style="font-weight:700">Не получилось загрузить уроки — похоже, пропала связь.</p><button onclick="location.reload()" style="border:0;border-radius:999px;padding:12px 20px;background:#fff;color:#6C3FC5;font:800 16px/1 var(--f);cursor:pointer">Попробовать ещё раз</button>'; });
+</script></body></html>
