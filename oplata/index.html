@@ -113,7 +113,7 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
   var saved=null; try{ saved=JSON.parse(ls.get('zh_order')||'null'); }catch(e){}
   app.innerHTML='<div class="card done"><div class="big" lang="zh">谢谢</div><h1>Проверяем оплату…</h1><div class="spin"></div><p>Обычно это занимает несколько секунд.</p></div>';
   if(!saved||saved.order_id!==order){
-   app.innerHTML='<div class="card done"><div class="big" lang="zh">你好</div><h1>Оплата принята</h1><p>Этот экран открыт не на том устройстве, где начиналась оплата, поэтому код показать не можем. Напишите нам «НИХАО» и почту, на которую оформляли, и пришлём код в ответ.</p><div class="links"><a href="https://t.me/SPeakSmilebot">Telegram</a><a href="https://max.ru/id245718463277_bot">MAX</a></div></div>';
+   app.innerHTML='<div class="card done"><div class="big" lang="zh">你好</div><h1>Оплата принята</h1><p>Этот экран открыт не на том устройстве, где начиналась оплата, поэтому код показать не можем. Напишите нам «НИХАО» и почту, на которую оформляли, и пришлём код в ответ.</p><div class="links"><a href="https://t.me/nihao_deti_bot">Telegram</a></div></div>';
    return;
   }
   var tries=0;
@@ -134,10 +134,10 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
    +'<p class="hint">На другом устройстве: откройте nihao-deti.ru/uroki/ и введите код. Потерялся код — напишите нам «НИХАО», восстановим по почте.</p></div>';
  }
  function renderNoCode(){
-  app.innerHTML='<div class="card done"><div class="big" lang="zh">你好</div><h1>Оплата прошла</h1><p>Код создаётся дольше обычного. Обновите страницу через минуту, или напишите нам «НИХАО», пришлём код вручную.</p><div class="links"><a href="javascript:location.reload()">Обновить</a><a href="https://t.me/SPeakSmilebot">Telegram</a></div></div>';
+  app.innerHTML='<div class="card done"><div class="big" lang="zh">你好</div><h1>Оплата прошла</h1><p>Код создаётся дольше обычного. Обновите страницу через минуту, или напишите нам «НИХАО», пришлём код вручную.</p><div class="links"><a href="javascript:location.reload()">Обновить</a><a href="https://t.me/nihao_deti_bot">Telegram</a></div></div>';
  }
  function renderNotYet(order){
-  app.innerHTML='<div class="card done"><div class="big" lang="zh">…</div><h1>Платёж ещё не подтверждён</h1><p>Банк иногда подтверждает оплату с задержкой в пару минут. Нажмите «Проверить ещё раз». Если деньги списались, а код не пришёл, напишите нам «НИХАО», номер заказа '+esc(order)+'.</p><div class="links"><a href="javascript:location.reload()">Проверить ещё раз</a><a href="https://t.me/SPeakSmilebot">Telegram</a></div></div>';
+  app.innerHTML='<div class="card done"><div class="big" lang="zh">…</div><h1>Платёж ещё не подтверждён</h1><p>Банк иногда подтверждает оплату с задержкой в пару минут. Нажмите «Проверить ещё раз». Если деньги списались, а код не пришёл, напишите нам «НИХАО», номер заказа '+esc(order)+'.</p><div class="links"><a href="javascript:location.reload()">Проверить ещё раз</a><a href="https://t.me/nihao_deti_bot">Telegram</a></div></div>';
  }
 
  if(q.get('order')) renderChecking(q.get('order'));

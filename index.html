@@ -318,8 +318,8 @@ footer a{color:var(--p)}
     <p>Одно слово в сообщения, и мы всё расскажем и поможем.</p>
     <div class="code">НИХАО</div>
     <div class="links">
-     <a href="https://t.me/SPeakSmilebot" target="_blank" rel="noopener">Telegram</a>
-     <a href="https://max.ru/id245718463277_bot" target="_blank" rel="noopener">MAX</a>
+     <a href="https://t.me/nihao_deti_bot" target="_blank" rel="noopener">Telegram</a>
+     <!-- MAX: вернуть, когда появится MAX-бот «Нихао, дети!» -->
     </div>
    </div>
   </div>
@@ -358,7 +358,7 @@ footer a{color:var(--p)}
   fetch('https://ss-lead.o-sintsova.workers.dev/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,age:'НИХАО-ДЕТИ · '+plan})})
   .then(function(r){return r.json();}).catch(function(){return {ok:false};})
   .then(function(res){ if(res&&res.ok){ show('Отправлено. Ответим в ближайшее время.',true); btn.textContent='Отправлено ✓'; }
-   else { show('Не отправилось. Напишите нам «НИХАО» в Telegram или MAX.',false); btn.disabled=false; btn.textContent='Отправить'; } });
+   else { show('Не отправилось. Напишите нам «НИХАО» в Telegram.',false); btn.disabled=false; btn.textContent='Отправить'; } });
  });
  var v=document.querySelector('.phone video'); if(v){ v.play().catch(function(){}); }
 })();
