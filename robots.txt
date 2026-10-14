@@ -1,0 +1,25 @@
+# Нихао, дети! — китайский для детей онлайн
+User-agent: *
+Allow: /
+Disallow: /uroki/codes/
+
+# поисковые и ИИ-боты — пускаем всех
+User-agent: Yandex
+Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: YandexGPT
+Allow: /
+
+Sitemap: https://nihao-deti.ru/sitemap.xml
+Host: nihao-deti.ru
