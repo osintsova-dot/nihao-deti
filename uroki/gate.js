@@ -52,7 +52,7 @@
 <form class="c"><div class="h" lang="zh">你好！</div><h1>Уроки китайского</h1>
 <p>Введите код семьи из школы — один раз, дальше телефон его запомнит.</p>
 <input name="k" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="panda-1234" value="${(ls.get('zhCode')||'').replace(/"/g,'')}">
-<button>Войти</button><div class="e">${reason&&MSG[reason]||''}</div><div class="s">Нет кода? <a href="/#price">Как получить доступ</a><br><a href="${base}" data-x>${onList?'Закрыть':'← Ко всем урокам'}</a></div></form>`;
+<button>Войти</button><div class="e">${reason&&MSG[reason]||''}</div><div class="s">Нет кода? <a href="/oplata/">Как получить доступ</a><br><a href="${base}" data-x>${onList?'Закрыть':'← Ко всем урокам'}</a></div></form>`;
       document.documentElement.style.overflow='hidden';
       (document.body||document.documentElement).appendChild(w);
       const f=w.querySelector('form'), inp=f.k, btn=f.querySelector('button'), err=f.querySelector('.e');
@@ -65,23 +65,23 @@
         if(tc && code===tc){ ls.set('zhTeacher','1'); location.reload(); return; }
         const j=await ask(code); btn.disabled=false; btn.textContent='Войти';
         if(j.ok&&j.teacher){ ls.set('zhTeacher','1'); location.reload(); return; }
-        if(j.ok){ ls.set('zhCode',j.code||code); ls.set('zhOk',JSON.stringify({code:j.code||code,at:Date.now()})); w.remove(); document.documentElement.style.overflow=''; done(j); }
+        if(j.ok){ ls.set('zhCode',j.code||code); ls.set('zhOk',JSON.stringify({code:j.code||code,at:Date.now(),paid:!!j.paid})); w.remove(); document.documentElement.style.overflow=''; done(j); }
         else { err.innerHTML=MSG[j.reason]||MSG.unknown; if(j.reason!=='net') ls.del('zhOk'); }
       };
     });
   }
-  const okSave=code=>ls.set('zhOk',JSON.stringify({code,at:Date.now()}));
+  const okSave=(code,paid)=>ls.set('zhOk',JSON.stringify({code,at:Date.now(),paid:!!paid}));
   async function access(){ // → {member, reason}; окно кода не показывает
     const code=ls.get('zhCode'); let ok=null; try{ ok=JSON.parse(ls.get('zhOk')||'null'); }catch(e){}
     const known=ok&&code&&ok.code===code;
     if(known && Date.now()-ok.at<FRESH){ // недавно проверяли — пускаем сразу, перепроверка тихо в фоне
-      ask(code).then(j=>{ if(j.ok) okSave(code); else if(j.reason!=='net'){ ls.del('zhOk'); location.reload(); } });
-      return {member:true};
+      ask(code).then(j=>{ if(j.ok){ if(!!j.paid!==!!ok.paid) location.reload(); okSave(code,j.paid); } else if(j.reason!=='net'){ ls.del('zhOk'); location.reload(); } });
+      return {member:true,paid:!!ok.paid};
     }
     if(!code) return {member:false};
     const j=await ask(code);
-    if(j.ok){ okSave(code); return {member:true}; }
-    if(j.reason==='net' && known && Date.now()-ok.at<OFFLINE) return {member:true};   // нет связи, но код недавно был рабочим
+    if(j.ok){ okSave(code,j.paid); return {member:true,paid:!!j.paid}; }
+    if(j.reason==='net' && known && Date.now()-ok.at<OFFLINE) return {member:true,paid:!!ok.paid};   // нет связи, но код недавно был рабочим
     if(j.reason!=='net') ls.del('zhOk');
     return {member:false, reason:j.reason};
   }
@@ -96,12 +96,13 @@
       if(q.has('t')){ if(q.get('t')===cfg.teacherCode){ ls.set('zhTeacher','1'); } else { ls.del('zhTeacher'); } }
       const teacher=ls.get('zhTeacher')==='1';
       const a=teacher?{member:true}:await access();
-      cfg.lessons.forEach(l=>{ l.openDate=parse(l.open); l.isOpen=l.openDate<=today; });
+      const paid=!!a.paid; // купили курс — даты занятий группы не действуют, открыто всё
+      cfg.lessons.forEach(l=>{ l.openDate=parse(l.open); l.isOpen=paid||l.openDate<=today; });
       const lesson=id=>cfg.lessons.find(x=>x.id===id);
-      const g={cfg, teacher, member:a.member, reason:a.reason, lesson,
+      const g={cfg, teacher, member:a.member, paid, reason:a.reason, lesson,
         needCode:id=>{ const l=lesson(id); return !teacher && !g.member && !(l&&l.free); },
         isOpen:id=>{ const l=lesson(id); return !!(teacher || (l && (l.free || (g.member && l.isOpen)))); },
-        askCode:()=>screen(g.reason).then(()=>{ g.member=true; g.reason=null; return g; }),
+        askCode:()=>screen(g.reason).then(j=>{ g.member=true; g.reason=null; if(j&&j.paid){ g.paid=true; cfg.lessons.forEach(l=>l.isOpen=true); } return g; }),
         fmt:d=>d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})};
       return g;
     }),

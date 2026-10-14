@@ -278,33 +278,33 @@ footer a{color:var(--p)}
     <h3>Модуль 1</h3><p class="for">восемь уроков, навсегда</p>
     <div class="sum"><b>1 990 ₽</b><span>разово</span></div>
     <ul><li>8 уроков со словами, играми и песнями</li><li>2 серии сериала</li><li>карточки «знаю / не знаю»</li><li>прописи и карточки для печати</li><li>доступ без срока</li></ul>
-    <a class="btn ink" href="#buy" data-plan="Модуль 1 · 1990">Хочу модуль 1</a>
+    <a class="btn ink" href="/oplata/?plan=module">Купить модуль 1</a>
    </div>
    <div class="plan best rv">
     <span class="badge">выгоднее</span>
     <h3>Год</h3><p class="for">все модули, которые выйдут за год</p>
     <div class="sum"><b>4 990 ₽</b><span>на 12 месяцев</span></div>
     <ul><li>модуль 1 сразу</li><li>новые модули по мере выхода</li><li>все серии сериала</li><li>карточки, прописи, печатные материалы</li><li class="soon">проверка произношения ИИ — скоро</li></ul>
-    <a class="btn honey" href="#buy" data-plan="Год · 4990">Хочу год</a>
+    <a class="btn honey" href="/oplata/?plan=year">Купить год</a>
    </div>
   </div>
-  <p class="pay-note">Оплата картой или по СБП, чек приходит на почту. Доступ открывается кодом семьи.</p>
+  <p class="pay-note">Оплата картой или по СБП, чек приходит на почту. Код семьи появляется сразу после оплаты.</p>
 
   <div class="form" id="buy">
    <div>
-    <h3>Получить доступ</h3>
-    <p>Оставьте контакт, и мы пришлём ссылку на оплату и код семьи. Обычно в течение часа, в рабочее время.</p>
+    <h3>Есть вопрос перед покупкой?</h3>
+    <p>Оставьте контакт, и мы ответим и поможем с оплатой. Обычно в течение часа, в рабочее время.</p>
     <form id="leadform" novalidate>
      <div class="field"><label for="f-name">Как вас зовут</label><input id="f-name" name="name" autocomplete="name" required></div>
      <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></div>
-     <div class="field"><label for="f-plan">Что оформляем</label><select id="f-plan"><option>Модуль 1 · 1 990 ₽</option><option>Год · 4 990 ₽</option><option>Пока вопрос</option></select></div>
+     <div class="field"><label for="f-plan">Что оформляем</label><select id="f-plan"><option>Пока вопрос</option><option>Модуль 1 · 1 990 ₽</option><option>Год · 4 990 ₽</option></select></div>
      <button class="btn honey" id="f-btn" type="submit">Отправить</button>
      <div class="msg" id="f-msg"></div>
     </form>
    </div>
    <div class="alt">
     <h3>Или напишите нам</h3>
-    <p>Одно слово в сообщения, и мы всё расскажем и пришлём ссылку на оплату.</p>
+    <p>Одно слово в сообщения, и мы всё расскажем и поможем.</p>
     <div class="code">НИХАО</div>
     <div class="links">
      <a href="https://t.me/SPeakSmilebot" target="_blank" rel="noopener">Telegram</a>
@@ -346,7 +346,7 @@ footer a{color:var(--p)}
   btn.disabled=true; btn.textContent='Отправляем…';
   fetch('https://ss-lead.o-sintsova.workers.dev/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,age:'НИХАО-ДЕТИ · '+plan})})
   .then(function(r){return r.json();}).catch(function(){return {ok:false};})
-  .then(function(res){ if(res&&res.ok){ show('Заявка отправлена. Пришлём ссылку на оплату и код семьи.',true); btn.textContent='Отправлено ✓'; }
+  .then(function(res){ if(res&&res.ok){ show('Отправлено. Ответим в ближайшее время.',true); btn.textContent='Отправлено ✓'; }
    else { show('Не отправилось. Напишите нам «НИХАО» в Telegram или MAX.',false); btn.disabled=false; btn.textContent='Отправить'; } });
  });
  var v=document.querySelector('.phone video'); if(v){ v.play().catch(function(){}); }

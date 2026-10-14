@@ -57,13 +57,13 @@ a.card.code{cursor:pointer}a.card.code:hover{transform:translateY(-2px);backgrou
   <p class="lead">Здесь то, что мы уже прошли на занятии. Повторяй дома: слушай, играй, пой.</p>
   <a class="songs" href="songs/"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v10.6A4 4 0 1 0 14 17V7h4V3z"/></svg></span><span><b>Наши песни <span lang="zh" style="font-family:var(--zh);font-weight:900;color:var(--p);font-size:15px">我们的歌</span></b><span>Все песни по порядку — слушай подряд, как плейлист</span></span></a>
   <a class="songs" href="cards/" style="margin-top:0"><span class="ic" style="font-family:var(--zh);font-weight:900;font-size:22px">知</span><span><b>Карточки «знаю / не знаю» <span lang="zh" style="font-family:var(--zh);font-weight:900;color:var(--p);font-size:15px">知道</span></b><span>Слова всех пройденных уроков. Трудные повторяются чаще</span></span></a>
-  <div class="codecta" id="codecta" hidden><span>Первый урок открыт всем. Остальные — для учеников группы.</span><button id="codebtn">Ввести код семьи</button></div>
+  <div class="codecta" id="codecta" hidden><span>Первый урок открыт всем. Остальные — по коду семьи.</span><button id="codebtn">Ввести код семьи</button></div>
   <div class="lhead">Уроки</div>
   <div class="list" id="list"><p style="opacity:.8">Загружаю уроки…</p></div>
-  <a class="join" id="join" href="/#price">Открыть все уроки</a>
+  <a class="join" id="join" href="/oplata/">Открыть все уроки</a>
   <p class="foot"><a href="/">Нихао, дети!</a> · Speak&Smile<span id="tl"> · <a href="#" id="tlogin">Вход для учителя</a></span></p>
 </div>
-<script src="gate.js?v=4"></script>
+<script src="gate.js?v=5"></script>
 <script>
 function draw(g){
   const list=document.getElementById('list'); list.innerHTML='';
@@ -75,7 +75,7 @@ function draw(g){
     if(needCode){ el.href='#'; el.onclick=e=>{ e.preventDefault(); g.askCode().then(draw); }; }
     const st = needCode ? '🔒 Ученикам группы'
       : (l.free && !g.member && !g.teacher) ? 'Пробный · открыт всем'
-      : l.isOpen ? 'Пройдено · повторяй' : (g.teacher ? 'Откроется '+g.fmt(l.openDate) : 'После занятия '+g.fmt(l.openDate));
+      : l.isOpen ? (g.paid ? 'Открыт' : 'Пройдено · повторяй') : (g.teacher ? 'Откроется '+g.fmt(l.openDate) : 'После занятия '+g.fmt(l.openDate));
     el.innerHTML=`<div class="n">${i+1}</div><div><div class="zh" lang="zh">${l.zh}</div><div class="py">${l.py} · ${l.ru}</div><div class="ru">${l.what}</div></div><span class="st">${st}</span>`;
     list.appendChild(el);
   });
