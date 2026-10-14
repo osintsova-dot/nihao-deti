@@ -1,0 +1,10 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Вход VK</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="font-family:system-ui;padding:40px;text-align:center;background:#F6F1E6">
+<p id="m">Подключаем VK…</p>
+<script>
+// VK ID возвращает сюда code/state/device_id; передаём их воркеру, который обменяет код на токен.
+var q=location.search||'';
+if(q.indexOf('code=')>=0){ location.replace('https://nihao-bot.o-sintsova.workers.dev/vkid/cb'+q); }
+else { document.getElementById('m').textContent='Эта страница служебная: сюда VK возвращает после входа.'; }
+</script></body></html>
