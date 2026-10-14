@@ -72,7 +72,7 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
      .then(function(r){clearTimeout(tm);return r.json();}).then(function(j){ if(j&&(j.payment_url||'paid' in j)) res(j); else { lastErr=j; if(--left===0) rej(j); } })
      .catch(function(e){ clearTimeout(tm); lastErr=e; if(--left===0) rej(lastErr); }); }); });
  }
- var PLANS={module:{t:'Модуль 1',s:'1 990 ₽',d:'8 уроков · навсегда'},year:{t:'Год',s:'4 990 ₽',d:'все модули · 12 месяцев'}};
+
 
  function renderForm(fail){
   var plan='module';
