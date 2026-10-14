@@ -65,23 +65,23 @@
         if(tc && code===tc){ ls.set('zhTeacher','1'); location.reload(); return; }
         const j=await ask(code); btn.disabled=false; btn.textContent='Войти';
         if(j.ok&&j.teacher){ ls.set('zhTeacher','1'); location.reload(); return; }
-        if(j.ok){ ls.set('zhCode',j.code||code); ls.set('zhOk',JSON.stringify({code:j.code||code,at:Date.now(),paid:!!j.paid})); w.remove(); document.documentElement.style.overflow=''; done(j); }
+        if(j.ok){ ls.set('zhCode',j.code||code); ls.set('zhOk',JSON.stringify({code:j.code||code,at:Date.now(),paid:!!j.paid,plan:j.plan||null,scope:j.lessons||null})); w.remove(); document.documentElement.style.overflow=''; done(j); }
         else { err.innerHTML=MSG[j.reason]||MSG.unknown; if(j.reason!=='net') ls.del('zhOk'); }
       };
     });
   }
-  const okSave=(code,paid)=>ls.set('zhOk',JSON.stringify({code,at:Date.now(),paid:!!paid}));
+  const okSave=(code,j)=>ls.set('zhOk',JSON.stringify({code,at:Date.now(),paid:!!(j&&j.paid),plan:(j&&j.plan)||null,scope:(j&&j.lessons)||null}));
   async function access(){ // → {member, reason}; окно кода не показывает
     const code=ls.get('zhCode'); let ok=null; try{ ok=JSON.parse(ls.get('zhOk')||'null'); }catch(e){}
     const known=ok&&code&&ok.code===code;
     if(known && Date.now()-ok.at<FRESH){ // недавно проверяли — пускаем сразу, перепроверка тихо в фоне
-      ask(code).then(j=>{ if(j.ok){ if(!!j.paid!==!!ok.paid) location.reload(); okSave(code,j.paid); } else if(j.reason!=='net'){ ls.del('zhOk'); location.reload(); } });
-      return {member:true,paid:!!ok.paid};
+      ask(code).then(j=>{ if(j.ok){ const ch=(!!j.paid!==!!ok.paid)||((j.plan||null)!==(ok.plan||null)); okSave(code,j); if(ch) location.reload(); } else if(j.reason!=='net'){ ls.del('zhOk'); location.reload(); } });
+      return {member:true,paid:!!ok.paid,plan:ok.plan||null,scope:ok.scope||null};
     }
     if(!code) return {member:false};
     const j=await ask(code);
-    if(j.ok){ okSave(code,j.paid); return {member:true,paid:!!j.paid}; }
-    if(j.reason==='net' && known && Date.now()-ok.at<OFFLINE) return {member:true,paid:!!ok.paid};   // нет связи, но код недавно был рабочим
+    if(j.ok){ okSave(code,j); return {member:true,paid:!!j.paid,plan:j.plan||null,scope:j.lessons||null}; }
+    if(j.reason==='net' && known && Date.now()-ok.at<OFFLINE) return {member:true,paid:!!ok.paid,plan:ok.plan||null,scope:ok.scope||null};   // нет связи, но код недавно был рабочим
     if(j.reason!=='net') ls.del('zhOk');
     return {member:false, reason:j.reason};
   }
@@ -96,13 +96,13 @@
       if(q.has('t')){ if(q.get('t')===cfg.teacherCode){ ls.set('zhTeacher','1'); } else { ls.del('zhTeacher'); } }
       const teacher=ls.get('zhTeacher')==='1';
       const a=teacher?{member:true}:await access();
-      const paid=!!a.paid; // купили курс — даты занятий группы не действуют, открыто всё
-      cfg.lessons.forEach(l=>{ l.openDate=parse(l.open); l.isOpen=paid||l.openDate<=today; });
+      const paid=!!a.paid, scope=a.scope||null; // купили курс — даты занятий группы не действуют; «урок 2» открывает только уроки 1–2
+      cfg.lessons.forEach(l=>{ l.openDate=parse(l.open); l.inScope=!scope||scope.includes(l.id); l.isOpen=paid?l.inScope:(l.openDate<=today); });
       const lesson=id=>cfg.lessons.find(x=>x.id===id);
-      const g={cfg, teacher, member:a.member, paid, reason:a.reason, lesson,
+      const g={cfg, teacher, member:a.member, paid, plan:a.plan||null, scope, reason:a.reason, lesson,
         needCode:id=>{ const l=lesson(id); return !teacher && !g.member && !(l&&l.free); },
         isOpen:id=>{ const l=lesson(id); return !!(teacher || (l && (l.free || (g.member && l.isOpen)))); },
-        askCode:()=>screen(g.reason).then(j=>{ g.member=true; g.reason=null; if(j&&j.paid){ g.paid=true; cfg.lessons.forEach(l=>l.isOpen=true); } return g; }),
+        askCode:()=>screen(g.reason).then(j=>{ g.member=true; g.reason=null; if(j&&j.paid){ g.paid=true; g.plan=j.plan||null; g.scope=j.lessons||null; cfg.lessons.forEach(l=>{ l.inScope=!g.scope||g.scope.includes(l.id); l.isOpen=l.inScope; }); } return g; }),
         fmt:d=>d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})};
       return g;
     }),
@@ -112,6 +112,14 @@
         if(g.isOpen(id)) return true;
         if(g.needCode(id)) return g.askCode().then(()=>this.lock(id));   // окно кода поверх урока
         const l=g.lesson(id); const when=l?g.fmt(l.openDate):'';
+        if(g.paid){ // куплен только урок 2 — этот урок в модуле
+          document.body.innerHTML=`<div style="min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center;font-family:'Baloo 2',system-ui,sans-serif;color:#fff">
+          <div style="max-width:420px"><div style="font:900 64px/1 'Noto Sans SC',sans-serif;color:#F5C842">加油!</div>
+          <h1 style="font-size:28px;margin:12px 0 6px">Этот урок — в модуле 1</h1>
+          <p style="font-size:16px;opacity:.9;margin:0 0 20px">${l?`«${l.zh} · ${l.ru}». `:''}Все 8 уроков, 2 серии сериала и карточки — 1 990 ₽, а 199 ₽ за урок 2 засчитаем: доплата 1 791 ₽.</p>
+          <a href="/oplata/?plan=module_up" style="display:inline-block;padding:14px 24px;border-radius:999px;background:#F5C842;color:#2A2140;font-weight:800;text-decoration:none">Открыть все уроки</a><br>
+          <a href="${base}" style="display:inline-block;margin-top:14px;color:#fff;opacity:.85">← Ко всем урокам</a></div></div>`;
+          return false; }
         document.body.innerHTML=`<div style="min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center;font-family:'Baloo 2',system-ui,sans-serif;color:#fff">
           <div style="max-width:420px"><svg viewBox="0 0 24 24" width="72" height="72" style="fill:#F5C842"><path d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 5a3 3 0 0 1 6 0v3H9V7zm3 7a1.5 1.5 0 0 1 .75 2.8V18h-1.5v-1.2A1.5 1.5 0 0 1 12 14z"/></svg>
           <h1 style="font-size:28px;margin:12px 0 6px">Этот урок откроется после занятия</h1>

@@ -63,19 +63,19 @@ a.card.code{cursor:pointer}a.card.code:hover{transform:translateY(-2px);backgrou
   <a class="join" id="join" href="/oplata/">Открыть все уроки</a>
   <p class="foot"><a href="/">Нихао, дети!</a> · Speak&Smile<span id="tl"> · <a href="#" id="tlogin">Вход для учителя</a></span></p>
 </div>
-<script src="gate.js?v=5"></script>
+<script src="gate.js?v=6"></script>
 <script>
 function draw(g){
   const list=document.getElementById('list'); list.innerHTML='';
-  const cta=document.getElementById('codecta'); cta.hidden=g.member||g.teacher; document.getElementById('join').hidden=g.member&&!g.teacher;
+  const cta=document.getElementById('codecta'); cta.hidden=g.member||g.teacher; const j=document.getElementById('join'); j.hidden=(g.member&&!g.teacher)&&g.plan!=='lesson2'; if(g.plan==='lesson2'){ j.textContent='Открыть все 8 уроков · доплата 1 791 ₽'; j.href='/oplata/?plan=module_up'; }
   g.cfg.lessons.forEach((l,i)=>{
     const open=g.isOpen(l.id), needCode=g.needCode(l.id);
-    const el=document.createElement(open||needCode?'a':'div'); el.className='card'+(open?'':' locked')+(needCode?' code':'')+((g.teacher&&!l.isOpen)?' teacher':''); el.style.setProperty('--i',i);
-    if(open) el.href=l.id+'/';
+    const el=document.createElement(open||needCode||(g.paid&&!l.isOpen)?'a':'div'); el.className='card'+(open?'':' locked')+(needCode?' code':'')+((g.teacher&&!l.isOpen)?' teacher':''); el.style.setProperty('--i',i);
+    if(open||(g.paid&&!l.isOpen)) el.href=l.id+'/';
     if(needCode){ el.href='#'; el.onclick=e=>{ e.preventDefault(); g.askCode().then(draw); }; }
     const st = needCode ? '🔒 Ученикам группы'
       : (l.free && !g.member && !g.teacher) ? 'Пробный · открыт всем'
-      : l.isOpen ? (g.paid ? 'Открыт' : 'Пройдено · повторяй') : (g.teacher ? 'Откроется '+g.fmt(l.openDate) : 'После занятия '+g.fmt(l.openDate));
+      : l.isOpen ? (g.paid ? 'Открыт' : 'Пройдено · повторяй') : (g.paid ? 'В модуле 1' : (g.teacher ? 'Откроется '+g.fmt(l.openDate) : 'После занятия '+g.fmt(l.openDate)));
     el.innerHTML=`<div class="n">${i+1}</div><div><div class="zh" lang="zh">${l.zh}</div><div class="py">${l.py} · ${l.ru}</div><div class="ru">${l.what}</div></div><span class="st">${st}</span>`;
     list.appendChild(el);
   });

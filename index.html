@@ -17,12 +17,12 @@
  {"@type":"Organization","@id":"https://nihao-deti.ru/#org","name":"Нихао, дети!","alternateName":"Nihao Deti","url":"https://nihao-deti.ru/","logo":"https://nihao-deti.ru/img/icon-512.png","parentOrganization":{"@type":"Organization","name":"Speak&Smile","url":"https://speakandsmile.ru/"},"sameAs":["https://speakandsmile.ru/"]},
  {"@type":"WebSite","@id":"https://nihao-deti.ru/#site","url":"https://nihao-deti.ru/","name":"Нихао, дети! — китайский для детей онлайн","inLanguage":"ru","publisher":{"@id":"https://nihao-deti.ru/#org"}},
  {"@type":"Course","@id":"https://nihao-deti.ru/#course","name":"Китайский с нуля для детей 8–13 лет. Модуль 1","description":"Самостоятельный онлайн-курс китайского для детей: слова с озвучкой, игры на слух, песни-мультики, учебный сериал и иероглифы с обводкой пальцем. 8 уроков по 10 минут в день, без учителя.","provider":{"@id":"https://nihao-deti.ru/#org"},"inLanguage":"ru","teaches":"Китайский язык (путунхуа): приветствие, знакомство, эмоции, счёт до 20, возраст, погода; 50+ иероглифов","audience":{"@type":"EducationalAudience","educationalRole":"student","audienceType":"дети 8–13 лет"},"educationalLevel":"Beginner","isAccessibleForFree":false,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT10M"},
-  "offers":[{"@type":"Offer","name":"Модуль 1","price":"1990","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://nihao-deti.ru/#price","category":"Paid"},{"@type":"Offer","name":"Урок 1 бесплатно","price":"0","priceCurrency":"RUB","url":"https://nihao-deti.ru/uroki/how-are-you/","category":"Free"}]},
+  "offers":[{"@type":"Offer","name":"Урок 2","price":"199","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://nihao-deti.ru/oplata/?plan=lesson2","category":"Paid"},{"@type":"Offer","name":"Модуль 1","price":"1990","priceCurrency":"RUB","availability":"https://schema.org/InStock","url":"https://nihao-deti.ru/#price","category":"Paid"},{"@type":"Offer","name":"Урок 1 бесплатно","price":"0","priceCurrency":"RUB","url":"https://nihao-deti.ru/uroki/how-are-you/","category":"Free"}]},
  {"@type":"FAQPage","mainEntity":[
   {"@type":"Question","name":"С какого возраста подходит курс китайского «Нихао, дети!»?","acceptedAnswer":{"@type":"Answer","text":"С 8 лет: ребёнок уже читает по-русски и может сам открыть урок. Подходит и 12–13-летним: подача не малышовая, герои сериала — их ровесники."}},
   {"@type":"Question","name":"Нужен ли учитель или знание китайского у родителей?","acceptedAnswer":{"@type":"Answer","text":"Нет. Все слова озвучены, тоны проверены преподавателем-китаистом, задания проверяются сами. Родителю достаточно дать ребёнку телефон."}},
   {"@type":"Question","name":"Сколько времени занимает урок?","acceptedAnswer":{"@type":"Answer","text":"Один урок — четыре шага по 8–10 минут: слова, игра, песня, иероглиф. Удобно проходить по шагу в день."}},
-  {"@type":"Question","name":"Сколько стоит курс?","acceptedAnswer":{"@type":"Answer","text":"Первый урок бесплатно. Модуль 1 из восьми уроков — 1 990 ₽ навсегда, один доступ на семью, до трёх устройств. Модуль 2 готовится."}},
+  {"@type":"Question","name":"Сколько стоит курс?","acceptedAnswer":{"@type":"Answer","text":"Первый урок бесплатно. Урок 2 — 199 ₽, модуль 1 из восьми уроков — 1 990 ₽ навсегда (199 ₽ за урок 2 засчитываются). Один доступ на семью, до трёх устройств. Модуль 2 готовится."}},
   {"@type":"Question","name":"На каких устройствах работает?","acceptedAnswer":{"@type":"Answer","text":"Телефон, планшет, компьютер. Ничего устанавливать не нужно, на телефоне курс можно добавить на экран «Домой» как приложение."}}
  ]}
 ]}
@@ -132,6 +132,8 @@ h2{font-family:var(--d);font-weight:900;font-size:clamp(26px,4vw,40px);letter-sp
 .film p{margin:0 0 10px;color:var(--ink2)}
 /* цена */
 .plans{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.plans.three{grid-template-columns:1fr 1fr 1.15fr}
+.next-note{color:var(--mute);font-size:14px;margin:14px 0 0;text-align:center}
 .plan{background:#fff;border-radius:28px;padding:26px;box-shadow:0 14px 30px rgba(31,27,23,.10);border:2px solid transparent;display:flex;flex-direction:column;position:relative}
 .plan.best{border-color:var(--p);background:linear-gradient(180deg,#fff,#F7F3FF)}
 .plan.next{background:rgba(255,255,255,.55);box-shadow:none;border:2px dashed rgba(31,27,23,.15)}
@@ -177,7 +179,7 @@ footer a{color:var(--p)}
  nav a:not(.cta){display:none}
  .hero{grid-template-columns:1fr;gap:26px}.hero-art{width:min(100%,280px)}.stamp{right:-10px}
  .tiles,.tiles.four{grid-template-columns:1fr 1fr}
- .demo,.film,.form,.plans,.program{grid-template-columns:1fr}
+ .demo,.film,.form,.plans,.plans.three,.program{grid-template-columns:1fr}
  .result{grid-template-columns:1fr}.result ul{columns:1}
  section{padding:32px 0}
 }
@@ -202,7 +204,7 @@ footer a{color:var(--p)}
    <ul class="facts"><li>8 уроков в модуле</li><li>6 песен-мультиков</li><li>сериал с героями</li><li>50+ иероглифов</li><li>без родителей</li></ul>
    <div class="cta">
     <a class="btn honey" href="/uroki/how-are-you/"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Открыть первый урок бесплатно</a>
-    <a class="btn ghost" href="#price">Открыть все уроки</a>
+    <a class="btn ghost" href="#price">Сколько стоит</a>
    </div>
    <p class="free-note">Без регистрации и карты. Дайте ребёнку телефон на десять минут и посмотрите, что будет.</p>
   </div>
@@ -274,22 +276,29 @@ footer a{color:var(--p)}
 
  <section id="price">
   <h2 class="rv">Сколько стоит</h2>
-  <p class="sub rv">Один доступ на всю семью: до трёх устройств, телефон, планшет и компьютер. Сейчас открыт модуль 1, модуль 2 готовится.</p>
-  <div class="plans one">
+  <p class="sub rv">Три ступеньки: попробовать бесплатно, проверить за 199 ₽, взять модуль целиком. Один доступ на всю семью, до трёх устройств.</p>
+  <div class="plans three">
+   <div class="plan rv">
+    <h3>Урок 1</h3><p class="for">попробовать</p>
+    <div class="sum"><b>0 ₽</b><span>бесплатно</span></div>
+    <ul><li>12 фраз с озвучкой</li><li>игра «послушай и найди»</li><li>песня-мультик</li><li>иероглиф дня</li></ul>
+    <a class="btn ink" href="/uroki/how-are-you/">Открыть урок 1</a>
+   </div>
+   <div class="plan rv">
+    <h3>Урок 2</h3><p class="for">проверить, что зашло</p>
+    <div class="sum"><b>199 ₽</b><span>разово</span></div>
+    <ul><li>«Как тебя зовут?»</li><li>он / она · друг и учитель</li><li>новая песня</li><li>199 ₽ засчитаем при покупке модуля</li></ul>
+    <a class="btn ink" href="/oplata/?plan=lesson2">Купить урок 2</a>
+   </div>
    <div class="plan best rv">
-    <span class="badge">модуль 1 · доступен сейчас</span>
-    <h3>Модуль 1</h3><p class="for">восемь уроков, навсегда, на всю семью</p>
+    <span class="badge">выгоднее</span>
+    <h3>Модуль 1</h3><p class="for">восемь уроков, навсегда</p>
     <div class="sum"><b>1 990 ₽</b><span>разово</span></div>
-    <ul><li>8 уроков со словами, играми и песнями</li><li>2 серии сериала «Гинкго в Пекине»</li><li>карточки «знаю / не знаю» с повторением</li><li>прописи и карточки для печати</li><li>доступ без срока, до 3 устройств</li></ul>
+    <ul><li>8 уроков со словами, играми и песнями</li><li>2 серии сериала</li><li>карточки «знаю / не знаю»</li><li>прописи и карточки для печати</li><li>на всю семью, до 3 устройств</li></ul>
     <a class="btn honey" href="/oplata/?plan=module">Купить модуль 1</a>
    </div>
-   <div class="plan next rv">
-    <h3>Модуль 2</h3><p class="for">семья · еда · школа · «что ты любишь»</p>
-    <div class="sum"><b>в работе</b></div>
-    <ul><li>ещё 8 уроков в том же формате</li><li>новые серии сериала</li><li class="soon">проверка произношения ИИ</li><li>купившим модуль 1 — скидка на модуль 2</li></ul>
-    <a class="btn ghost" href="https://t.me/nihao_deti_bot" target="_blank" rel="noopener">Сообщить, когда выйдет</a>
-   </div>
   </div>
+  <p class="next-note rv">Модуль 2 (семья, еда, школа, «что ты любишь») в работе. Купившим модуль 1 пришлём ссылку со скидкой.</p>
   <p class="pay-note">Оплата картой или по СБП, чек приходит на почту. Код семьи появляется сразу после оплаты.</p>
 
   <div class="form" id="buy">
@@ -299,7 +308,7 @@ footer a{color:var(--p)}
     <form id="leadform" novalidate>
      <div class="field"><label for="f-name">Как вас зовут</label><input id="f-name" name="name" autocomplete="name" required></div>
      <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required></div>
-     <div class="field"><label for="f-plan">Что оформляем</label><select id="f-plan"><option>Пока вопрос</option><option>Модуль 1 · 1 990 ₽</option></select></div>
+     <div class="field"><label for="f-plan">Что оформляем</label><select id="f-plan"><option>Пока вопрос</option><option>Урок 2 · 199 ₽</option><option>Модуль 1 · 1 990 ₽</option></select></div>
      <button class="btn honey" id="f-btn" type="submit">Отправить</button>
      <div class="msg" id="f-msg"></div>
     </form>

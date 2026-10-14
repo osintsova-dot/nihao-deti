@@ -75,12 +75,16 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
 
 
  function renderForm(fail){
-  var plan='module';
-  app.innerHTML='<h1>Открыть все уроки</h1><p class="sub">Оплата картой или по СБП через Т-Банк. Код доступа появится на этом экране сразу после оплаты.</p>'
+  var want=q.get('plan'); var saved=null; try{ saved=JSON.parse(ls.get('zhOk')||'null'); }catch(e){}
+  var l2code=(saved&&saved.plan==='lesson2'&&saved.code)?saved.code:(want==='module_up'?(ls.get('zhCode')||''):'');
+  var plan=(want==='lesson2')?'lesson2':(l2code?'module_up':'module');
+  app.innerHTML='<h1>'+(l2code?'Открыть все уроки':'Открыть следующие уроки')+'</h1><p class="sub">Оплата картой или по СБП через Т-Банк. Код доступа появится на этом экране сразу после оплаты.</p>'
    +'<form class="card" id="f">'
    +'<div class="plans">'
-   +'<label class="plan"><input type="radio" name="plan" value="module"'+(plan==='module'?' checked':'')+'><b>Модуль 1</b><span class="sum">1 990 ₽</span><small>8 уроков, 2 серии сериала, карточки, прописи. Доступ без срока.</small></label>'
-   +'<div class="plan" style="cursor:default;opacity:.75"><b>Модуль 2</b><span class="sum" style="font-size:18px;color:var(--mute)">в работе</span><small>Купившим модуль 1 — скидка, когда выйдет.</small></div>'
+   +(l2code
+     ? '<label class="plan"><input type="radio" name="plan" value="module_up" checked><b>Модуль 1 · доплата</b><span class="sum">1 791 ₽</span><small>Все 8 уроков, 2 серии сериала, карточки. Ваши 199 ₽ за урок 2 засчитаны. Код '+esc(l2code)+' останется тот же.</small></label>'
+     : '<label class="plan"><input type="radio" name="plan" value="lesson2"'+(plan==='lesson2'?' checked':'')+'><b>Урок 2</b><span class="sum">199 ₽</span><small>«Как тебя зовут?» — слова, игра, песня, иероглиф. Потом эти 199 ₽ засчитаем при покупке модуля.</small></label>'
+      +'<label class="plan"><input type="radio" name="plan" value="module"'+(plan==='module'?' checked':'')+'><b>Модуль 1</b><span class="sum">1 990 ₽</span><small>8 уроков, 2 серии сериала, карточки, прописи. Доступ без срока.</small></label>')
    +'</div>'
    +'<div class="field"><label for="email">Электронная почта <span>· сюда придёт чек</span></label><input id="email" type="email" inputmode="email" autocomplete="email" required placeholder="mama@example.ru"></div>'
    +'<div class="field"><label for="child">Имя ребёнка <span>· необязательно</span></label><input id="child" autocomplete="off" placeholder="Маша"></div>'
@@ -97,8 +101,8 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
    var p=f.querySelector('input[name=plan]:checked').value;
    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.className='msg err'; msg.textContent='Проверьте адрес почты: на него придёт чек.'; return; }
    btn.disabled=true; btn.textContent='Готовим оплату…'; msg.className='msg';
-   post('/pay/create',{product:'nihao',plan:p,email:email,child:child,phone:phone}).then(function(j){
-    ls.set('zh_order',JSON.stringify({order_id:j.order_id,claim:j.claim,plan:p,at:Date.now()}));
+   post('/pay/create',{product:'nihao',plan:p,email:email,child:child,phone:phone,code:(p==='module_up'?l2code:'')}).then(function(j){
+    ls.set('zh_order',JSON.stringify({order_id:j.order_id,claim:j.claim,plan:p,at:Date.now()})); try{ localStorage.removeItem('zhOk'); }catch(e){}
     location.href=j.payment_url;
    }).catch(function(e){ btn.disabled=false; btn.textContent='Перейти к оплате'; msg.className='msg err';
     msg.textContent='Не получилось связаться с платёжным сервером. Попробуйте ещё раз через минуту или напишите нам «НИХАО» в Telegram.'; });
@@ -125,7 +129,7 @@ h1{font-family:var(--d);font-weight:900;font-size:clamp(26px,5vw,36px);letter-sp
   ls.set('zhCode',code);
   app.innerHTML='<div class="card done"><div class="big" lang="zh">太棒了!</div><h1>Готово! Уроки открыты</h1>'
    +'<p>Код вашей семьи. Сохраните его: по нему входят с других устройств.</p><div class="code">'+esc(code)+'</div>'
-   +'<p>Модуль 1: 8 уроков без срока. Чек придёт на почту.</p>'
+   +'<p>'+(plan==='lesson2'?'Урок 2 открыт. Понравится — модуль 1 со скидкой на эти 199 ₽.':'Модуль 1: все 8 уроков без срока.')+' Чек придёт на почту.</p>'
    +'<a class="btn" href="/uroki/?k='+encodeURIComponent(code)+'">Открыть уроки</a>'
    +'<p class="hint">На другом устройстве: откройте nihao-deti.ru/uroki/ и введите код. Потерялся код — напишите нам «НИХАО», восстановим по почте.</p></div>';
  }
