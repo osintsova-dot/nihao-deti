@@ -85,6 +85,15 @@ h1 .zh{font-family:var(--zh);color:var(--p);display:block;font-size:.5em;letter-
 @keyframes fadeup{from{transform:translateY(16px);opacity:0}}
 /* секции */
 section{padding:44px 0}
+/* видео о курсе */
+.promo{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+.pv{position:relative;aspect-ratio:16/9;border-radius:26px;overflow:hidden;background:#15121a;box-shadow:0 24px 50px rgba(31,27,23,.22),0 0 0 6px #fff;cursor:pointer}
+.pv img,.pv iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:cover}
+.pv .play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--honey);display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.35),0 2px 0 var(--honey2);transition:transform .25s}
+.pv:hover .play{transform:scale(1.08)} .pv .play svg{width:34px;height:34px;fill:var(--ink);margin-left:4px}
+.pv .dur{position:absolute;right:14px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-weight:800;font-size:13px}
+@media (max-width:760px){.promo{grid-template-columns:1fr;gap:18px}}
+
 h2{font-family:var(--d);font-weight:900;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em;line-height:1.08;margin:0 0 10px}
 .sub{font-family:var(--s);font-style:italic;font-size:19px;color:var(--ink2);margin:0 0 24px;max-width:60ch}
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -226,6 +235,20 @@ footer a{color:var(--p)}
   </div>
  </section>
 
+ <section id="video">
+  <div class="promo">
+   <div class="pv rv" id="pv" role="button" tabindex="0" aria-label="Смотреть ролик о курсе">
+    <img src="/img/promo_cover.jpg" alt="Ролик о курсе: китайский для детей, ребёнок учит сам" loading="lazy">
+    <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="dur">0:46</div>
+   </div>
+   <div>
+    <h2 class="rv">46 секунд: как это выглядит у ребёнка</h2>
+    <p class="sub rv">Настоящие экраны урока, без монтажных чудес: карточки, игра, мультик с пандой Бао, иероглиф пальцем и сериал.</p>
+    <p class="rv" style="margin:14px 0 0"><a class="btn honey" href="/uroki/how-are-you/"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Попробовать первый урок</a></p>
+   </div>
+  </div>
+ </section>
+
  <section>
   <div class="demo">
    <div class="shots rv"><img src="/img/shot_words.webp" alt="Экран урока: карточки слов с озвучкой" loading="lazy"><img src="/img/shot_hanzi.webp" alt="Экран урока: иероглиф дня, обводка пальцем" loading="lazy"></div>
@@ -362,5 +385,10 @@ footer a{color:var(--p)}
  });
  var v=document.querySelector('.phone video'); if(v){ v.play().catch(function(){}); }
 })();
+</script>
+
+<script>
+(function(){var pv=document.getElementById('pv'); if(!pv) return; function go(){ var f=document.createElement('iframe'); f.src='https://vkvideo.ru/video_ext.php?oid=-242280684&id=456239020&hd=2&autoplay=1'; f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture'; f.setAttribute('allowfullscreen',''); f.title='Ролик о курсе «Нихао, дети!»'; while(pv.firstChild) pv.removeChild(pv.firstChild); pv.appendChild(f); pv.style.cursor='default'; }
+ pv.addEventListener('click',go); pv.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });})();
 </script>
 </body></html>
