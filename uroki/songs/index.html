@@ -2,8 +2,8 @@
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="apple-touch-icon" href="/uroki/icons/apple-touch-icon.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/uroki/icons/icon-192.png?v=3"><link rel="manifest" href="/uroki/manifest.webmanifest"><meta name="apple-mobile-web-app-title" content="Китайский"><meta name="theme-color" content="#6C3FC5">
-<title>Наши песни · Speak&Smile</title>
-<meta name="description" content="Все песни курса китайского Speak&Smile подряд — слушай как плейлист.">
+<title>Наши песни · Нихао, дети!</title>
+<meta name="description" content="Все песни курса китайского Нихао, дети! подряд — слушай как плейлист.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800;900&family=Noto+Sans+SC:wght@700;900&display=swap" rel="stylesheet">
 <style>
@@ -72,7 +72,7 @@ h1{font-family:var(--zh);font-weight:900;font-size:clamp(44px,12vw,64px);line-he
 <body>
 <a class="homeback" href="../" aria-label="Все уроки"><svg viewBox="0 0 24 24"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20z"/></svg><span>Все уроки</span></a>
 <div class="wrap">
-  <div class="brand">Speak<b>&</b>Smile · китайский</div>
+  <div class="brand">Нихао, <b>дети!</b> · китайский</div>
   <h1 lang="zh">我们的歌</h1>
   <p class="lead"><span style="font-family:var(--pyf)">Wǒmen de gē</span> · Наши песни — все по порядку, подряд</p>
 
@@ -126,7 +126,7 @@ function load(i,autoplay){
   const z=$('cZ'); z.textContent=s.zh; z.classList.remove('in'); void z.offsetWidth; z.classList.add('in');
   $('nT').textContent=s.ru; $('nS').textContent=`${s.les} · ${i+1} из ${L.filter(x=>x.open).length}`;
   document.querySelectorAll('.tr').forEach(t=>t.classList.toggle('on',+t.dataset.i===i));
-  if('mediaSession' in navigator){ navigator.mediaSession.metadata=new MediaMetadata({title:`${s.zh} — ${s.ru}`,artist:'Speak&Smile · китайский',album:'Наши песни',
+  if('mediaSession' in navigator){ navigator.mediaSession.metadata=new MediaMetadata({title:`${s.zh} — ${s.ru}`,artist:'Нихао, дети! · китайский',album:'Наши песни',
     artwork:[{src:'/uroki/icons/icon-512.png?v=3',sizes:'512x512',type:'image/png'},{src:'/uroki/icons/icon-192.png?v=3',sizes:'192x192',type:'image/png'}]}); }
   if(autoplay) a.play().catch(()=>{});
 }

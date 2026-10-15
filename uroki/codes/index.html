@@ -68,7 +68,7 @@ const allowed=f=>f.manual==='allow'||(f.manual!=='block'&&f.active);
 function message(code,f){
   const kids=(f.names||[]).map(n=>n.split(' ').slice(1).join(' ')||n).join(' и ');
   const hi=f.parent?`Здравствуйте, ${f.parent}!`:'Здравствуйте!';
-  return `${hi} Это Speak&Smile 🐼\n\nДля ${kids||'вашего ребёнка'} открыты уроки китайского — повторять дома слова, песни и мультики:\nhttps://nihao-deti.ru/uroki/?k=${code}\n\nКод вашей семьи: ${code}\nСсылка вводит код сама. Работает на 3 устройствах (телефон, планшет, компьютер). Новый урок открывается после занятия.`;
+  return `${hi} Это Нихао, дети! 🐼\n\nДля ${kids||'вашего ребёнка'} открыты уроки китайского — повторять дома слова, песни и мультики:\nhttps://nihao-deti.ru/uroki/?k=${code}\n\nКод вашей семьи: ${code}\nСсылка вводит код сама. Работает на 3 устройствах (телефон, планшет, компьютер). Новый урок открывается после занятия.`;
 }
 function render(){
   const fams=Object.entries(D.fam||{}).sort((a,b)=>(allowed(b[1])-allowed(a[1]))||String(a[1].names[0]||'').localeCompare(b[1].names[0]||'','ru'));

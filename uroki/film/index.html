@@ -2,7 +2,7 @@
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="apple-touch-icon" href="/uroki/icons/apple-touch-icon.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/uroki/icons/icon-192.png?v=3"><link rel="manifest" href="/uroki/manifest.webmanifest"><meta name="apple-mobile-web-app-title" content="Китайский"><meta name="theme-color" content="#6C3FC5">
-<title>Сериал · китайский · Speak&Smile</title>
+<title>Сериал · китайский · Нихао, дети!</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@800;900&family=Onest:wght@500;600;700;800&family=Noto+Sans+SC:wght@700;900&display=swap" rel="stylesheet">
@@ -187,7 +187,7 @@ document.addEventListener('keydown',e=>{ if(e.code==='Space'){ e.preventDefault(
 ZhGate.ready.then(g=> (g.teacher||g.member) ? g : g.askCode())
 .then(()=>fetch(BASE+'timeline.json',{cache:'no-cache'})).then(r=>r.json()).then(t=>{
   T=t; heroModes();
-  $('ep').textContent=t.title.ep; $('h').textContent=t.title.zh; $('hs').textContent=t.title.ru; document.title=`${t.title.ep} · ${t.title.zh} · Speak&Smile`;
+  $('ep').textContent=t.title.ep; $('h').textContent=t.title.zh; $('hs').textContent=t.title.ru; document.title=`${t.title.ep} · ${t.title.zh} · Нихао, дети!`;
   $('title').innerHTML=`<div class="e">${t.title.ep}</div><div class="z">${t.title.zh}</div><div class="r">${t.title.ru}</div>`;
   if(t.series) $('series').innerHTML=`<svg class="leaf" viewBox="0 0 64 64"><path d="M32 60c-1 0-1.6-.8-1.6-1.8V40.5C21 38 6 31 4.3 15.6 4 13 6.6 11.7 8.6 12.9c4.6 2.8 10.6 2.3 16.4-1.4 3.2-2 4.6-5 5.4-7.8.5-1.9 2.7-1.9 3.2 0 .8 2.8 2.2 5.8 5.4 7.8 5.8 3.7 11.8 4.2 16.4 1.4 2-1.2 4.6.1 4.3 2.7C58 31 43 38 33.6 40.5v17.7c0 1-.6 1.8-1.6 1.8z"/></svg>`
     +`<div class="pre">${t.series.pre||'Speak&amp;Smile · сериал'}</div><div class="nm">${t.series.ru}</div><div class="zh2">${t.series.zh}</div><div class="py2">${t.series.py||''}</div>`;
