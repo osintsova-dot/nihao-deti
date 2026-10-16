@@ -22,6 +22,12 @@
     <div class="lyrics" id="finLyrics">${LINES.map((l,i)=>`<div class="line" data-i="${i}"><img src="../whats-your-name/img/wave.webp?v=5" alt=""><div><div class="zh" lang="zh">${l.zh}</div><div class="py">${l.py}</div><div class="ru">${l.ru}</div></div></div>`).join('')}</div>
     <p class="sub" style="margin:0">Нажми «Петь» — строчки подсвечиваются под музыку.</p>
   </div></section>`;
+  // Крючок в боты: после песни — «напомнить про урок 2» (источник site_l1 виден в /stats бота)
+  const nx=document.createElement('div'); nx.className='nextbots';
+  nx.innerHTML=`<style>.nextbots{margin:22px auto 0;max-width:520px;text-align:center;padding:18px 16px;border-radius:18px;background:rgba(108,63,197,.07)}.nextbots h3{font-size:18px;margin:0 0 6px}.nextbots p{margin:0 0 12px;color:#5b5346;font-size:14px;line-height:1.45}.nextbots .bl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.nextbots a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;background:#6C3FC5;color:#fff;text-decoration:none;font-weight:700;font-size:15px}.nextbots a.vk{background:#0077FF}.nextbots a.mx{background:#1F6BF1}</style>
+   <h3>Урок пройден 🎉</h3><p>Урок 2 — про еду и «я хочу». Напомнить, когда ребёнок отдохнёт? Бао напишет завтра и пришлёт песню целиком.</p>
+   <div class="bl"><a href="https://t.me/nihao_deti_bot?start=site_l1" target="_blank" rel="noopener">Telegram</a><a class="mx" href="https://max.ru/id245718463277_1_bot?start=site_l1" target="_blank" rel="noopener">MAX</a><a class="vk" href="https://vk.me/nihao_deti?ref=site_l1" target="_blank" rel="noopener">ВКонтакте</a></div>`;
+  box.appendChild(nx);
   const lyr=document.getElementById('finLyrics'), playB=document.getElementById('finPlay'), stopB=document.getElementById('finStop');
   let song=null, times=null, raf=0, cur=null;
   fetch(BASE+'song.json').then(r=>r.ok?r.json():null).then(j=>{ if(j){ times=j; song=new Audio(BASE+'song.mp3'); song.preload='auto'; document.getElementById('finStage').hidden=false; } });
