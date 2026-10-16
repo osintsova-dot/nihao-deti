@@ -115,6 +115,15 @@ body{
 .rep{display:inline-flex;gap:4px;margin-left:10px;vertical-align:middle}
 .rep i{width:10px;height:10px;border-radius:50%;background:#E6DEFB;border:2px solid #C9B8F5;transition:background .2s,transform .2s}
 .rep i.done{background:var(--honey);border-color:#E0B32E;transform:scale(1.15)}
+/* ── песня: два героя ── */
+.who{display:flex;gap:6px;background:#F1EDFA;border-radius:999px;padding:5px;margin:0 auto 16px;max-width:360px}
+.who button{flex:1;border:0;background:transparent;color:var(--muted);font:800 15px/1 var(--f,inherit);padding:11px 10px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s,transform .2s}
+.who button:active{transform:scale(.97)}
+.who button.on{background:var(--paper);color:var(--ink);box-shadow:0 4px 14px rgba(30,10,70,.14)}
+.song[data-who="bao"] .kids-part,.song[data-who="kids"] .bao-part{display:none}
+.baovid{margin:0 auto 16px;max-width:300px;border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(30,10,70,.22);background:#000;aspect-ratio:9/16}
+.baovid video{width:100%;height:100%;display:block;object-fit:cover}
+.baovid-t{font-weight:800;font-size:15px;color:var(--ink);margin:0 0 10px}
 .controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn.primary{background:var(--p);color:#fff}
 .fab-stop{position:fixed;left:50%;transform:translateX(-50%);bottom:max(18px,env(safe-area-inset-bottom));z-index:40;appearance:none;border:0;font:inherit;font-weight:800;font-size:17px;padding:14px 26px;border-radius:999px;background:#F17FBE;color:#fff;display:inline-flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.35);animation:pop .3s var(--ease)}
@@ -326,6 +335,12 @@ body{
   <section id="song" role="tabpanel" hidden>
     <div class="song">
       <h2>你叫什么名字？</h2>
+      <div class="who" id="who" role="tablist" aria-label="Кто поёт"><button data-who="bao" class="on">🐼 С Бао</button><button data-who="kids">🧒 С ребятами</button></div>
+      <div class="bao-part">
+        <p class="baovid-t">🐼 Мультик: Бао, Тао и Сяо Хун</p>
+        <div class="baovid"><video src="clips/bao_song.mp4" controls playsinline preload="metadata" poster="img/bao_poster.jpg"></video></div>
+      </div>
+      <div class="kids-part">
       <p class="sub">Та же идея, что в Genki «What's your name?», только по-китайски: вопрос — ответ — друзья. Нажми на строчку — услышишь её отдельно.</p>
       <div class="controls">
         <button class="btn primary" id="playSong"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Петь</button>
@@ -335,6 +350,7 @@ body{
       </div>
       <div class="lyrics" id="lyrics"></div>
       <p class="sub" style="margin:0">Нажми «Петь» — строчки подсвечиваются под музыку. Темп можно замедлить.</p>
+    </div>
     </div>
   </section>
 
@@ -587,5 +603,11 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
 });
 const h=location.hash.slice(1); if(['game','song','hanzi'].includes(h)){document.querySelector(`.tab[data-tab="${h}"]`).click();}
 </script>
-<script>ZhGate.ready.then(g=>{ if(g.teacher) document.getElementById('slidesBtn').hidden=false; });</script>
+<script>ZhGate.ready.then(g=>{ if(g.teacher) document.getElementById('slidesBtn').hidden=false; });/* выбор героя песни */
+(function(){const s=document.querySelector('.song'),w=document.getElementById('who');if(!s||!w)return;
+let who='bao';try{who=localStorage.getItem('nihao_song_who')||'bao'}catch(e){}
+function set(v){who=v;s.dataset.who=v;[...w.children].forEach(b=>b.classList.toggle('on',b.dataset.who===v));try{localStorage.setItem('nihao_song_who',v)}catch(e){}
+ if(v==='kids'){const bv=s.querySelector('.baovid video');if(bv)bv.pause();}else{try{if(typeof stop==='function')stop()}catch(e){}}}
+w.addEventListener('click',e=>{const b=e.target.closest('button');if(b)set(b.dataset.who)});set(who);})();
+</script>
 </body></html>
