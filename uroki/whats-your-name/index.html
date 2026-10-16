@@ -335,7 +335,7 @@ body{
   <section id="song" role="tabpanel" hidden>
     <div class="song">
       <h2>你叫什么名字？</h2>
-      <div class="who" id="who" role="tablist" aria-label="Кто поёт"><button data-who="bao" class="on">🐼 С Бао</button><button data-who="kids">🧒 С ребятами</button></div>
+      <div class="who" id="who" role="tablist" aria-label="Кто поёт" hidden><button data-who="bao" class="on">🐼 С Бао</button><button data-who="kids">🧒 С ребятами</button></div>
       <div class="bao-part">
         <p class="baovid-t">🐼 Мультик: Бао, Тао и Сяо Хун</p>
         <div class="baovid"><video src="clips/bao_song.mp4" controls playsinline preload="metadata" poster="img/bao_poster.jpg"></video></div>
@@ -608,6 +608,6 @@ const h=location.hash.slice(1); if(['game','song','hanzi'].includes(h)){document
 let who='bao';try{who=localStorage.getItem('nihao_song_who')||'bao'}catch(e){}
 function set(v){who=v;s.dataset.who=v;[...w.children].forEach(b=>b.classList.toggle('on',b.dataset.who===v));try{localStorage.setItem('nihao_song_who',v)}catch(e){}
  if(v==='kids'){const bv=s.querySelector('.baovid video');if(bv)bv.pause();}else{try{if(typeof stop==='function')stop()}catch(e){}}}
-w.addEventListener('click',e=>{const b=e.target.closest('button');if(b)set(b.dataset.who)});set(who);})();
+w.addEventListener('click',e=>{const b=e.target.closest('button');if(b)set(b.dataset.who)});set(w.hidden?'kids':who);})();
 </script>
 </body></html>
